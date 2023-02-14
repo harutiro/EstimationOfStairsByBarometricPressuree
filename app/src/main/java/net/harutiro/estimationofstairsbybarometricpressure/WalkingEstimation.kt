@@ -12,6 +12,7 @@ class WalkingEstimation {
 
 
 
+    //TODO:ノイズ除去を行う。
     fun comeData(sensingData:Double):String{
 
         Log.d("now",(Date(System.currentTimeMillis()).time - getTime.time).toString())
