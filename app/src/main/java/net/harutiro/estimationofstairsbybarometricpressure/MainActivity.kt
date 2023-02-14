@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private var AccSensor: Sensor? = null
 
+    val WalkingEstimation = WalkingEstimation()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +35,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             sensorX = event.values[0]
             val strTmp = "加速度センサー X: $sensorX"
             findViewById<TextView>(R.id.textView).text = strTmp
+
+            val ans = WalkingEstimation.comeData(sensorX.toDouble())
+
+            Log.d("main", ans.toString())
+
+            if(ans != "sampling"){
+                 findViewById<TextView>(R.id.textView2).text = ans
+            }
+
         }
     }
     //センサの精度が変更されたときに呼ばれる
