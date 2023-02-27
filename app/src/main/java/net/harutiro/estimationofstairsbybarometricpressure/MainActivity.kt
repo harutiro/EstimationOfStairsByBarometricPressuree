@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // Remove the gravity contribution with the high-pass filter.
         if (event.sensor.type == Sensor.TYPE_PRESSURE) {
             sensorX = event.values[0]
-            val strTmp = "加速度センサー X: $sensorX"
-            findViewById<TextView>(R.id.textView).text = strTmp
+
+            findViewById<TextView>(R.id.textView).text = WalkingEstimation.noiseRemoved(sensorX.toDouble()).toString()
 
             val ans = WalkingEstimation.comeData(sensorX.toDouble())
 
